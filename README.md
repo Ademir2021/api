@@ -1,8 +1,7 @@
 # API of Authentication users and WebToken
 
 
-
-
+# API for Sales
 
 ## API Endpoints
 The API provides the following endpoints:
