@@ -14,7 +14,6 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Table(name = "sales")
 @Entity
 @Getter
@@ -28,12 +27,26 @@ public class Sale {
     @Column(name = "issue_date")
     private LocalDate issueDate;
 
-    @Column(name = "id_cliente")
-    private Long idClient;
+    @Column(name = "id_branch")
+    private Long idBranch;
+    
+    @Column(name = "id_user")
+    private Long idUser;
+
+    @Column(name = "id_person")
+    private Long idPerson;
+
+    @Column(name = "total_sale")
+    private Double totalSale;
+
+    @Column(name = "discount")
+    private Double discount;
+
+    @Column(name = "total_note")
+    private Double totalNote;
 
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
     private List<ItemSale> itemsSale;
 
     // Getters e Setters
 }
-

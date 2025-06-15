@@ -18,11 +18,17 @@ public class SaleService {
 
     @Autowired
     private SaleRepository saleRepository;
+    
+    private Double total = 0.0;
 
     public Sale createSale(SaleDTO saleDTO) {
+
         Sale sale = new Sale();
-        sale.setIssueDate(LocalDate.parse(saleDTO.issueDate));
-        sale.setIdClient(saleDTO.id_client);
+        sale.setIssueDate(LocalDate.now());
+        sale.setIdPerson(saleDTO.idPerson);
+        sale.setDiscount(saleDTO.discount);
+        sale.setIdBranch(saleDTO.idBranch);
+        sale.setIdUser(saleDTO.idUser);
 
         List<ItemSale> itemList = new ArrayList<>();
 
@@ -32,11 +38,15 @@ public class SaleService {
             item.setAmount(itemDTO.amount);
             item.setPrice(itemDTO.price);
             item.setTotalItem(itemDTO.price * itemDTO.amount);
+            total += item.getTotalItem();
             item.setSale(sale);
             itemList.add(item);
         }
 
         sale.setItemsSale(itemList);
+
+        sale.setTotalSale(total);
+        sale.setTotalNote(total - sale.getDiscount());
 
         return saleRepository.save(sale);
     }
