@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class BrandService {
      @Autowired
@@ -17,8 +18,10 @@ public class BrandService {
         this.brandRepository = brandRepository;
     }
 
-    public List<Brand> create (Brand brand){
-        brandRepository.save(brand);
+    public List<Brand> create (Brand[] brands){
+        for (Brand brand : brands) {
+            brandRepository.save(brand);
+        }
         return list();
     }
 

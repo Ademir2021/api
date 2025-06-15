@@ -27,8 +27,8 @@ public class BrandController {
     }
 
     @PostMapping("/brands")
-    List <Brand> create(@RequestBody @Validated Brand brand){
-        return brandService.create(brand);
+    List <Brand> create(@RequestBody @Validated Brand[] brand){
+          return  brandService.create(brand);
     }
 
     @GetMapping("/brands")

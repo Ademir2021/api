@@ -1,6 +1,8 @@
 package br.com.centroinfo.api.api.dto.brandDTO;
 
+
 public record BrandRequestDTO(
                 // @NotBlank
-                String name) {
-}
+                String name,
+                String items
+                ) {}
