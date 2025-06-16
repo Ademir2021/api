@@ -1,6 +1,5 @@
 # API of Authentication users and WebToken
 
-
 # API for Sales
 
    # O que será incluído:
@@ -9,7 +8,7 @@
     Controller REST: SaleController
     Service: SaleService
     Repositórios: SaleRepository, ItemSaleRepository
-    Banco: H2 em memória
+    Banco: Postgres
     Dependências: Spring Web, Spring Data JPA, H2 Database
 
 # Estruturas do projeto 
@@ -17,32 +16,44 @@ sales-api/
 ├── src/
 │   └── main/
 │       ├── java/com/example/salesapi/
-│       │   ├── controller/
-│       │   │   └── SaleController.java
-│       │   ├── dto/
-│       │   │   ├── SaleDTO.java
-│       │   │   └── ItemSaleDTO.java
-│       │   ├── model/
-│       │   │   ├── Sale.java
-│       │   │   └── ItemSale.java
-│       │   ├── repository/
-│       │   │   ├── SaleRepository.java
-│       │   │   └── ItemSaleRepository.java
-│       │   └── service/
-│       │       └── SaleService.java
+│       │   ├── controller/salecontroller
+│       │   │              └── SaleController.java
+│       │   ├── dto/saleDTO
+│       │   │       ├── SaleDTO.java
+│       │   │       └── ItemSaleDTO.java
+│       │   ├── entity/sale
+│       │   │          ├── Sale.java
+│       │   │          └── ItemSale.java
+│       │   ├── repository/sale
+│       │   │              ├── SaleRepository.java
+│       │   │              └── ItemSaleRepository.java
+│       │   └── service/sale
+│       │               └── SaleService.java
 │       └── resources/
 │           └── application.properties
 └── pom.xml
 
 # Json para testes
 {
-  "issueDate": "2025-06-15",
-  "id_client": 1,
+  "idPerson": 2,
+	"idBranch":1,
+	"idUser":1,
+	"discount":2.50,
   "itemsSale": [
     {
       "idProduct": 1,
       "amount": 2,
       "price": 23.50
+    },
+		 {
+      "idProduct": 2,
+      "amount": 3,
+      "price": 15.90
+    },
+		{
+      "idProduct": 4,
+      "amount": 3,
+      "price": 165
     }
   ]
 }
@@ -60,3 +71,5 @@ POST /product - Register a new product (ADMIN access required).
 POST /auth/login - Login into the App
 
 POST /auth/register - Register new users for next acess.
+
+POST /store/sales - Register of Sales.

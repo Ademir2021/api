@@ -1,6 +1,6 @@
 package br.com.centroinfo.api.api.service.sale;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +19,12 @@ public class SaleService {
     @Autowired
     private SaleRepository saleRepository;
     
-    private Double total = 0.0;
+    private Double totalSalse = 0.0;
 
     public Sale createSale(SaleDTO saleDTO) {
 
         Sale sale = new Sale();
-        sale.setIssueDate(LocalDate.now());
+        sale.setIssueDate(LocalDateTime.now());
         sale.setIdPerson(saleDTO.idPerson);
         sale.setDiscount(saleDTO.discount);
         sale.setIdBranch(saleDTO.idBranch);
@@ -38,15 +38,15 @@ public class SaleService {
             item.setAmount(itemDTO.amount);
             item.setPrice(itemDTO.price);
             item.setTotalItem(itemDTO.price * itemDTO.amount);
-            total += item.getTotalItem();
+            totalSalse += item.getTotalItem();
             item.setSale(sale);
             itemList.add(item);
         }
 
         sale.setItemsSale(itemList);
 
-        sale.setTotalSale(total);
-        sale.setTotalNote(total - sale.getDiscount());
+        sale.setTotalSale(totalSalse);
+        sale.setTotalNote(totalSalse - sale.getDiscount());
 
         return saleRepository.save(sale);
     }

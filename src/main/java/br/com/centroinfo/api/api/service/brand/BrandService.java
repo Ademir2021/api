@@ -18,10 +18,8 @@ public class BrandService {
         this.brandRepository = brandRepository;
     }
 
-    public List<Brand> create (Brand[] brands){
-        for (Brand brand : brands) {
+    public List<Brand> create (Brand brand){
             brandRepository.save(brand);
-        }
         return list();
     }
 

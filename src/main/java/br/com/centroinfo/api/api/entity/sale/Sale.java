@@ -1,6 +1,6 @@
 package br.com.centroinfo.api.api.entity.sale;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -25,7 +25,7 @@ public class Sale {
     private Long id;
 
     @Column(name = "issue_date")
-    private LocalDate issueDate;
+    private LocalDateTime issueDate;
 
     @Column(name = "id_branch")
     private Long idBranch;
@@ -48,5 +48,4 @@ public class Sale {
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
     private List<ItemSale> itemsSale;
 
-    // Getters e Setters
 }

@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name="sectors")
+@Table(name = "sectors")
 @Entity
 @Getter
 @NoArgsConstructor
@@ -16,5 +16,7 @@ public class Sector {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
 }

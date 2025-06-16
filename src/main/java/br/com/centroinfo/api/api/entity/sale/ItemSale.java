@@ -34,7 +34,6 @@ public class ItemSale {
     @ManyToOne
     @JoinColumn(name = "id_sale")
     private Sale sale;
-
-    // Getters e Setters
+    
 }
 
