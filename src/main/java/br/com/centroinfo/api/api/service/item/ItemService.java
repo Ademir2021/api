@@ -1,5 +1,6 @@
 package br.com.centroinfo.api.api.service.item;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class ItemService {
 
     public List<Item> create(ItemDTO itemDTO) {
         Item item = new Item();
+        item.setCreatedAt(LocalDateTime.now());
         item.setName(itemDTO.name);
         item.setPriceMax(itemDTO.priceMax);
         item.setPriceMin(itemDTO.priceMin);
@@ -23,9 +25,7 @@ public class ItemService {
         item.setSector(itemDTO.sector);
         item.setBarCode(itemDTO.barCode);
         item.setImagem(itemDTO.imagem);
-
         itemRepository.save(item);
-
         return list();
     }
 
@@ -36,6 +36,8 @@ public class ItemService {
     public List<Item> update(ItemDTO itemDTO) {
         Item item = new Item();
         item.setId(itemDTO.id);
+        item.setCreatedAt(itemDTO.createdAt);
+        item.setUpdatedAt(LocalDateTime.now());
         item.setName(itemDTO.name);
         item.setPriceMax(itemDTO.priceMax);
         item.setPriceMin(itemDTO.priceMin);
@@ -43,9 +45,7 @@ public class ItemService {
         item.setSector(itemDTO.sector);
         item.setBarCode(itemDTO.barCode);
         item.setImagem(itemDTO.imagem);
-
         itemRepository.save(item);
-
         return list();
     }
 

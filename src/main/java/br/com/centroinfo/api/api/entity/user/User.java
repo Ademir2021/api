@@ -1,7 +1,5 @@
 package br.com.centroinfo.api.api.entity.user;
 
-// import lombok.AllArgsConstructor;
-// import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import jakarta.persistence.*;
 import java.util.Collection;
@@ -15,17 +13,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity(name = "users")
 @Getter
 @NoArgsConstructor
-// @AllArgsConstructor
-// @EqualsAndHashCode(of = "id")
+
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private Long id;
     private String login;
     private String password;
     private UserRole role;
 
     public User(String login, String password, UserRole role) {
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User(Long id, String login, String password, UserRole role) {
+        this.id = id;
         this.login = login;
         this.password = password;
         this.role = role;

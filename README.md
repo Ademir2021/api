@@ -60,15 +60,17 @@ sales-api/
 
 ## Json para teste de Item
 {
-  "name": "Produto Exemplo",
-  "priceMax": 199.99,
-  "priceMin": 149.99,
-  "brandId": {
+	"id":2,
+	"createdAt":"2025-06-17T14:03:22.874630103",
+  "name": "Notebook Lenovo Tela15 16RAM SSD512 CoreI5 12Ger",
+  "priceMax": 5000.00,
+  "priceMin": 4800.00,
+  "brand": {
     "id": 1,
 		"name":""
   },
-  "sectorId": {
-    "id": 5,
+  "sector": {
+    "id": 1,
 		"name":""
   },
   "barCode": "1234567890123",

@@ -24,9 +24,10 @@ public class BrandController {
     BrandService brandService;
 
     @PostMapping("/brands")
-    public Brand create(@RequestBody BrandDTO body) {
-        Brand brand = brandService.create(body);
-        return brand;
+    public List<Brand> create(@RequestBody BrandDTO brandDTO) {
+        // Brand brand = brandService.create(brandDTO);
+            brandService.create(brandDTO);
+        return brandService.list();
     }
 
     @GetMapping("/brands")
@@ -35,9 +36,10 @@ public class BrandController {
     }
 
     @PutMapping("/brands")
-    public Brand update(@RequestBody BrandDTO body) {
-        Brand brand = brandService.update(body);
-        return brand;
+    public List<Brand> update(@RequestBody BrandDTO brandDTO) {
+        // Brand brand = brandService.update(brandDTO);
+        brandService.update(brandDTO);
+        return brandService.list();
     }
 
     @DeleteMapping("/brands/{id}")
