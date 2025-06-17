@@ -1,17 +1,15 @@
 package br.com.centroinfo.api.api.service.sale;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import br.com.centroinfo.api.api.dto.saleDTO.ItemSaleDTO;
 import br.com.centroinfo.api.api.dto.saleDTO.SaleDTO;
 import br.com.centroinfo.api.api.entity.sale.ItemSale;
 import br.com.centroinfo.api.api.entity.sale.Sale;
 import br.com.centroinfo.api.api.repository.sale.SaleRepository;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class SaleService {
@@ -22,16 +20,14 @@ public class SaleService {
     private Double totalSalse = 0.0;
 
     public Sale createSale(SaleDTO saleDTO) {
-
         Sale sale = new Sale();
         sale.setIssueDate(LocalDateTime.now());
         sale.setIdPerson(saleDTO.idPerson);
         sale.setDiscount(saleDTO.discount);
         sale.setIdBranch(saleDTO.idBranch);
-        sale.setIdUser(saleDTO.idUser);
+        sale.setUser(saleDTO.user);
 
         List<ItemSale> itemList = new ArrayList<>();
-
         for (ItemSaleDTO itemDTO : saleDTO.itemsSale) {
             ItemSale item = new ItemSale();
             item.setIdProduct(itemDTO.idProduct);
@@ -44,10 +40,12 @@ public class SaleService {
         }
 
         sale.setItemsSale(itemList);
-
         sale.setTotalSale(totalSalse);
         sale.setTotalNote(totalSalse - sale.getDiscount());
-
         return saleRepository.save(sale);
+    }
+
+    public List<Sale> listSale(){
+        return saleRepository.findAll();
     }
 }

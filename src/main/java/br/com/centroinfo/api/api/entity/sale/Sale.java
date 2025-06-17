@@ -3,12 +3,15 @@ package br.com.centroinfo.api.api.entity.sale;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.centroinfo.api.api.entity.user.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -29,9 +32,10 @@ public class Sale {
 
     @Column(name = "id_branch")
     private Long idBranch;
-    
-    @Column(name = "id_user")
-    private Long idUser;
+  
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     @Column(name = "id_person")
     private Long idPerson;
