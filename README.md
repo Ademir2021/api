@@ -33,7 +33,7 @@ sales-api/
 │           └── application.properties
 └── pom.xml
 
-# Json para testes
+# Json para testes de sales
 {
   "idPerson": 2,
 	"idBranch":1,
@@ -56,6 +56,23 @@ sales-api/
       "price": 165
     }
   ]
+}
+
+## Json para teste de Item
+{
+  "name": "Produto Exemplo",
+  "priceMax": 199.99,
+  "priceMin": 149.99,
+  "brandId": {
+    "id": 1,
+		"name":""
+  },
+  "sectorId": {
+    "id": 5,
+		"name":""
+  },
+  "barCode": "1234567890123",
+  "imagem": "http://exemplo.com/imagem.jpg"
 }
 
 

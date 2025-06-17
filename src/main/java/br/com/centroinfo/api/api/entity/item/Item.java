@@ -28,7 +28,7 @@ public class Item {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
-    //
+
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
@@ -41,15 +41,16 @@ public class Item {
     private double priceMin;
 
     @ManyToOne
-    @JoinColumn(name = "id_brand")
+    @JoinColumn(name = "brand_id")
     private Brand brand;
 
     @ManyToOne
-    @JoinColumn(name = "id_sector")
+    @JoinColumn(name="sector_id")
     private Sector sector;
-
+    
     @Column(name = "bar_code")
     private String barCode;
+
     private String imagem;
 
     @PrePersist

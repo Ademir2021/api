@@ -1,4 +1,4 @@
-package br.com.centroinfo.api.api.controller.saleController;
+package br.com.centroinfo.api.api.controller.salecontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
