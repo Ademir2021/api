@@ -3,6 +3,8 @@ package br.com.centroinfo.api.api.entity.sale;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.centroinfo.api.api.entity.branch.Branch;
+import br.com.centroinfo.api.api.entity.person.Person;
 import br.com.centroinfo.api.api.entity.user.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -30,15 +32,17 @@ public class Sale {
     @Column(name = "issue_date")
     private LocalDateTime issueDate;
 
-    @Column(name = "id_branch")
-    private Long idBranch;
-  
+    @ManyToOne
+    @JoinColumn(name="branch_id")
+    private Branch branch;
+
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
 
-    @Column(name = "id_person")
-    private Long idPerson;
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
 
     @Column(name = "total_sale")
     private Double totalSale;

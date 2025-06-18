@@ -16,15 +16,15 @@ public class SaleService {
 
     @Autowired
     private SaleRepository saleRepository;
-    
+
     private Double totalSalse = 0.0;
 
     public Sale createSale(SaleDTO saleDTO) {
         Sale sale = new Sale();
         sale.setIssueDate(LocalDateTime.now());
-        sale.setIdPerson(saleDTO.idPerson);
+        sale.setPerson(saleDTO.person);
         sale.setDiscount(saleDTO.discount);
-        sale.setIdBranch(saleDTO.idBranch);
+        sale.setBranch(saleDTO.branch);
         sale.setUser(saleDTO.user);
 
         List<ItemSale> itemList = new ArrayList<>();
@@ -45,7 +45,7 @@ public class SaleService {
         return saleRepository.save(sale);
     }
 
-    public List<Sale> listSale(){
+    public List<Sale> listSale() {
         return saleRepository.findAll();
     }
 }

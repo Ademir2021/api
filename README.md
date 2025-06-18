@@ -77,6 +77,48 @@ sales-api/
   "imagem": "http://exemplo.com/imagem.jpg"
 }
 
+## Json para teste do Person
+{
+  "id": 1,
+  "name": "Maria Oliveira",
+  "age": 28,
+  "address": {
+    "id": 101,
+    "street": "Av. Paulista",
+    "city": "São Paulo",
+    "state": "SP",
+    "zipCode": "01310-100"
+  }
+}
+# Json para address isoladamente
+{
+  "id": 101,
+  "street": "Av. Paulista",
+  "city": "São Paulo",
+  "state": "SP",
+  "zipCode": "01310-100"
+}
+
+# Json para criar cities
+{
+  "name": "Campinas",
+  "state": "SP",
+  "country": {
+    "name": "Brasil",
+    "code": "BR"
+  }
+}
+
+# Json para person
+
+{
+  "name": "Ana Paula",
+  "dateOfBirth": "1995-03-12",
+  "gender": "FEMININO",
+  "cpf": "12345678901"
+}
+
+
 
 
 ## API Endpoints

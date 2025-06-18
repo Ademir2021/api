@@ -22,7 +22,7 @@ public class SecurityConfigurations {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return  httpSecurity
+        return httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
@@ -30,22 +30,22 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/items/brands").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/items/sectors").hasRole("ADMIN")
-                          .requestMatchers(HttpMethod.POST, "/items/items").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/items/items").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/store/sales").hasRole("ADMIN")
-                        .anyRequest().authenticated()
-                )
+                        .requestMatchers(HttpMethod.POST, "/persons/persons").hasRole("ADMIN")
+                        .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
-
