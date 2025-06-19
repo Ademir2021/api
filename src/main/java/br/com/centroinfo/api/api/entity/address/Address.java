@@ -23,7 +23,13 @@ public class Address {
 
     private String street;
 
-     @ManyToOne
+    private String number;
+
+    private String neighbor;
+
+    private String complement;
+
+    @ManyToOne
     @JoinColumn(name = "zipcode_id")
     private ZipCode zipCode;
 

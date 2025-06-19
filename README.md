@@ -60,36 +60,35 @@ sales-api/
 
 ## Json para teste de Item
 {
-	"id":2,
-	"createdAt":"2025-06-17T14:03:22.874630103",
-  "name": "Notebook Lenovo Tela15 16RAM SSD512 CoreI5 12Ger",
-  "priceMax": 5000.00,
-  "priceMin": 4800.00,
-  "brand": {
-    "id": 1,
-		"name":""
+  "person": {
+		"id":1
+	},
+	"branch": {
+		"id":1
+	},
+	"user": {
+    "id": 1
   },
-  "sector": {
-    "id": 1,
-		"name":""
-  },
-  "barCode": "1234567890123",
-  "imagem": "http://exemplo.com/imagem.jpg"
+	"discount":12.80,
+  "itemsSale": [
+    {
+      "idProduct": 1,
+      "amount": 2,
+      "price": 5000.00
+    },
+		 {
+      "idProduct": 2,
+      "amount": 3,
+      "price": 23.90
+    },
+		{
+      "idProduct": 3,
+      "amount": 2,
+      "price": 500
+    }
+  ]
 }
 
-## Json para teste do Person
-{
-  "id": 1,
-  "name": "Maria Oliveira",
-  "age": 28,
-  "address": {
-    "id": 101,
-    "street": "Av. Paulista",
-    "city": "São Paulo",
-    "state": "SP",
-    "zipCode": "01310-100"
-  }
-}
 # Json para address isoladamente
 {
   "id": 101,
@@ -110,16 +109,33 @@ sales-api/
 }
 
 # Json para person
-
+- Obs: `null para create e num do id para update`
+- Obs: `o formato da data copiado do banco precisa adicionar o T`
 {
-  "name": "Ana Paula",
-  "dateOfBirth": "1995-03-12",
-  "gender": "FEMININO",
-  "cpf": "12345678901"
+	"id":null, 
+	"branch": {
+		"id":1
+	},
+	"user": {
+    "id": 1
+  },
+	"createdAt":"2025-06-19T08:37:06.129426",
+  "name": "Julio Nascimento",
+  "dateOfBirth": "2006-03-02",
+  "gender": "MASCULINO",
+  "cpf": "12345678903",
+	"personAddress":[
+	{
+		"idAddrees":2
+	},
+	{
+		"idAddrees":2
+	},
+		{
+		"idAddrees":2
+	}
+	]
 }
-
-
-
 
 ## API Endpoints
 The API provides the following endpoints:
