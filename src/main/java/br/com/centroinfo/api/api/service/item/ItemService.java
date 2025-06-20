@@ -3,6 +3,7 @@ package br.com.centroinfo.api.api.service.item;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +31,10 @@ public class ItemService {
     }
 
     public List<Item> list() {
-        return itemRepository.findAll();
+        return itemRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
+
+
 
     public List<Item> update(ItemDTO itemDTO) {
         Item item = new Item();

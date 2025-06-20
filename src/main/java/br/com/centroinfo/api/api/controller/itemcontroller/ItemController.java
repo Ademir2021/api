@@ -16,7 +16,6 @@ import br.com.centroinfo.api.api.dto.itemDTO.ItemDTO;
 import br.com.centroinfo.api.api.entity.item.Item;
 import br.com.centroinfo.api.api.service.item.ItemService;
 
-
 @RestController
 @RequestMapping("items")
 public class ItemController {
@@ -25,25 +24,23 @@ public class ItemController {
     ItemService itemService;
 
     @PostMapping("/items")
-    public List<Item> create(@RequestBody ItemDTO itemDTO){
-        return itemService.create(itemDTO); 
+    public List<Item> create(@RequestBody ItemDTO itemDTO) {
+        return itemService.create(itemDTO);
     }
 
     @GetMapping("/items")
-    public List<Item> list(){
+    public List<Item> list() {
         return itemService.list();
     }
 
-     @PutMapping("/items")
-    public List<Item> update(@RequestBody ItemDTO itemDTO){
-        return itemService.update(itemDTO); 
+    @PutMapping("/items")
+    public List<Item> update(@RequestBody ItemDTO itemDTO) {
+        return itemService.update(itemDTO);
     }
 
     @DeleteMapping("/items/{id}")
-    public List<Item> delete(@PathVariable("id") Long id){
+    public List<Item> delete(@PathVariable("id") Long id) {
         return itemService.delete(id);
     }
 
-
 }
-

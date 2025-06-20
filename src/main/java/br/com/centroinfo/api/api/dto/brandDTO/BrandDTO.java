@@ -5,7 +5,3 @@ public class BrandDTO {
     public String name;
 }
 
-// public record BrandDTO(
-//     Long id,
-//     String name
-// ){}

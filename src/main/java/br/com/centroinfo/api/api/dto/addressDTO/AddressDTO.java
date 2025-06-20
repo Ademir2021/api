@@ -1,9 +1,9 @@
-package br.com.centroinfo.api.api.dto.addressDTO.Address;
+package br.com.centroinfo.api.api.dto.addressDTO;
 
 import br.com.centroinfo.api.api.entity.person.Person;
 import br.com.centroinfo.api.api.entity.zipcode.ZipCode;
 
-public class dto {
+public class AddressDTO {
     public Long id;
     public String street;
     public String number;

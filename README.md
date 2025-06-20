@@ -60,33 +60,21 @@ sales-api/
 
 ## Json para teste de Item
 {
-  "person": {
-		"id":1
-	},
-	"branch": {
-		"id":1
-	},
-	"user": {
-    "id": 1
+	"id":null,
+	"createdAt":"2025-06-20T10:58:59.334414798",
+  "name": "Antena de Internet AirGrid Ubiquiti",
+  "priceMax": 890.00,
+  "priceMin": 870.00,
+  "brand": {
+    "id": 4,
+		"name":""
   },
-	"discount":12.80,
-  "itemsSale": [
-    {
-      "idProduct": 1,
-      "amount": 2,
-      "price": 5000.00
-    },
-		 {
-      "idProduct": 2,
-      "amount": 3,
-      "price": 23.90
-    },
-		{
-      "idProduct": 3,
-      "amount": 2,
-      "price": 500
-    }
-  ]
+  "sector": {
+    "id": 1,
+		"name":""
+  },
+  "barCode": "1234567890126",
+  "imagem": "http://exemplo.com/imagem.jpg"
 }
 
 # Json para address isoladamente
@@ -140,7 +128,6 @@ sales-api/
 ## API Endpoints
 The API provides the following endpoints:
 
-```markdown
 GET /hello - Welcome for test of user authenticated (all authenticated users)
 
 POST /product - Register a new product (ADMIN access required).

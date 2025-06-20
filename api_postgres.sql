@@ -15,3 +15,6 @@ SELECT *FROM persons
 INSERT INTO branchs (address, fantasy_name, license, name, phone_number, person_id)VALUES(
 'Av, Castro Alves', 'Loja de Teste', 'xxxxxx', 'Empresa Me teste', '44988521033', 2);
 SELECT *FROM branchs;
+
+-- Reset da tabela no Postgres.
+ALTER SEQUENCE tbl_id_seq RESTART WITH 1;

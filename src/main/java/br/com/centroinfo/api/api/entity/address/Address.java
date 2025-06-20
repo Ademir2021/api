@@ -1,5 +1,6 @@
 package br.com.centroinfo.api.api.entity.address;
 
+// import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import br.com.centroinfo.api.api.entity.person.Person;
 import br.com.centroinfo.api.api.entity.zipcode.ZipCode;
 import jakarta.persistence.Entity;
@@ -16,6 +17,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+
+// @JsonIgnoreProperties({"zipCode", "person"})
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
