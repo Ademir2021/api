@@ -1,6 +1,7 @@
 package br.com.centroinfo.api.api.service.address;
 
 import br.com.centroinfo.api.api.dto.addressDTO.AddressDTO;
+import br.com.centroinfo.api.api.dto.addressDTO.AddressSummaryDTO;
 import br.com.centroinfo.api.api.entity.address.Address;
 import br.com.centroinfo.api.api.repository.address.AddressRepository;
 import java.util.List;
@@ -29,7 +30,11 @@ public class AddressService {
         return addressRepository.findAll();
     }
 
-    public List<Address> update(AddressDTO addressDTO) {
+    public List<AddressSummaryDTO> findSummary() {
+        return addressRepository.findSummary();
+    }
+
+    public Address update(AddressDTO addressDTO) {
         Address address = new Address();
         address.setId(addressDTO.id);
         address.setStreet(addressDTO.street);
@@ -38,13 +43,12 @@ public class AddressService {
         address.setComplement(addressDTO.complement);
         address.setZipCode(addressDTO.zipCode);
         address.setPerson(addressDTO.person);
-        addressRepository.save(address);
-        return list();
+        //
+        return addressRepository.save(address);
     }
 
-    public List<Address> delete(Long id){
+    public void delete(Long id) {
         addressRepository.deleteById(id);
-        return list();
     }
 
 }

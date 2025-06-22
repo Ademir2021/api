@@ -23,6 +23,7 @@ public class ZipCode {
     private Long id;
 
     private String code;
+    
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;

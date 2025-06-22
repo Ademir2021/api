@@ -1,11 +1,10 @@
 package br.com.centroinfo.api.api.controller.addresscontroller;
 
 import br.com.centroinfo.api.api.dto.addressDTO.AddressDTO;
+import br.com.centroinfo.api.api.dto.addressDTO.AddressSummaryDTO;
 import br.com.centroinfo.api.api.entity.address.Address;
 import br.com.centroinfo.api.api.service.address.AddressService;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,20 +29,20 @@ public class AddressController {
     }
 
     @GetMapping("/address")
-    public List<Address> list() {
-        return addressService.list();
+    public List<AddressSummaryDTO> list() {
+        return addressService.findSummary();
     }
 
+
     @PutMapping("/address")
-    public List<Address> update(@RequestBody AddressDTO addressDTO) {
-        addressService.update(addressDTO);
-        return addressService.list();
+    public Address update(@RequestBody AddressDTO addressDTO) {
+        return addressService.update(addressDTO);
+        
     }
 
     @DeleteMapping("/address/{id}")
-    public List<Address> delete(@PathVariable("id") Long id) {
+    public void delete(@PathVariable("id") Long id) {
         addressService.delete(id);
-        return addressService.list();
     }
 
 }

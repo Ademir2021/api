@@ -1,6 +1,5 @@
 package br.com.centroinfo.api.api.entity.address;
 
-// import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import br.com.centroinfo.api.api.entity.person.Person;
 import br.com.centroinfo.api.api.entity.zipcode.ZipCode;
 import jakarta.persistence.Entity;
@@ -18,24 +17,17 @@ import lombok.Setter;
 @Getter
 @Setter
 
-// @JsonIgnoreProperties({"zipCode", "person"})
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String street;
-
     private String number;
-
     private String neighbor;
-
     private String complement;
-
     @ManyToOne
     @JoinColumn(name = "zipcode_id")
     private ZipCode zipCode;
-
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
