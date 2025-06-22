@@ -9,7 +9,7 @@
     Service: SaleService
     Repositórios: SaleRepository, ItemSaleRepository
     Banco: Postgres
-    Dependências: Spring Web, Spring Data JPA, H2 Database
+    Dependências: Spring Web, Spring Data JPA, Database
 
 # Estruturas do projeto 
 sales-api/
@@ -33,97 +33,6 @@ sales-api/
 │           └── application.properties
 └── pom.xml
 
-# Json para testes de sales
-{
-  "idPerson": 2,
-	"idBranch":1,
-	"idUser":1,
-	"discount":2.50,
-  "itemsSale": [
-    {
-      "idProduct": 1,
-      "amount": 2,
-      "price": 23.50
-    },
-		 {
-      "idProduct": 2,
-      "amount": 3,
-      "price": 15.90
-    },
-		{
-      "idProduct": 4,
-      "amount": 3,
-      "price": 165
-    }
-  ]
-}
-
-## Json para teste de Item
-{
-	"id":null,
-	"createdAt":"2025-06-20T10:58:59.334414798",
-  "name": "Antena de Internet AirGrid Ubiquiti",
-  "priceMax": 890.00,
-  "priceMin": 870.00,
-  "brand": {
-    "id": 4,
-		"name":""
-  },
-  "sector": {
-    "id": 1,
-		"name":""
-  },
-  "barCode": "1234567890126",
-  "imagem": "http://exemplo.com/imagem.jpg"
-}
-
-# Json para address isoladamente
-{
-  "id": 101,
-  "street": "Av. Paulista",
-  "city": "São Paulo",
-  "state": "SP",
-  "zipCode": "01310-100"
-}
-
-# Json para criar cities
-{
-  "name": "Campinas",
-  "state": "SP",
-  "country": {
-    "name": "Brasil",
-    "code": "BR"
-  }
-}
-
-# Json para person
-- Obs: `null para create e num do id para update`
-- Obs: `o formato da data copiado do banco precisa adicionar o T`
-{
-	"id":null, 
-	"branch": {
-		"id":1
-	},
-	"user": {
-    "id": 1
-  },
-	"createdAt":"2025-06-19T08:37:06.129426",
-  "name": "Julio Nascimento",
-  "dateOfBirth": "2006-03-02",
-  "gender": "MASCULINO",
-  "cpf": "12345678903",
-	"personAddress":[
-	{
-		"idAddrees":2
-	},
-	{
-		"idAddrees":2
-	},
-		{
-		"idAddrees":2
-	}
-	]
-}
 
 ## API Endpoints
 The API provides the following endpoints:
