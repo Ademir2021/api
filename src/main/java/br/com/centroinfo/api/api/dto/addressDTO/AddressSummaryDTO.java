@@ -1,8 +1,5 @@
 package br.com.centroinfo.api.api.dto.addressDTO;
 
-import lombok.Getter;
-
-@Getter
 public class AddressSummaryDTO {
   private Long id;
   private String street;
@@ -41,4 +38,77 @@ public class AddressSummaryDTO {
     this.city = new CitySummaryDTO(cId, cName, cState, cIbge);
     this.country = new CountrySumaryDTO(coId, coName, coCode);
   }
+
+  public Long getId() {
+    return this.id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getStreet() {
+    return this.street;
+  }
+
+  public void setStreet(String street) {
+    this.street = street;
+  }
+
+  public String getNumber() {
+    return this.number;
+  }
+
+  public void setNumber(String number) {
+    this.number = number;
+  }
+
+  public String getNeighbor() {
+    return this.neighbor;
+  }
+
+  public void setNeighbor(String neighbor) {
+    this.neighbor = neighbor;
+  }
+
+  public String getComplement() {
+    return this.complement;
+  }
+
+  public void setComplement(String complement) {
+    this.complement = complement;
+  }
+
+  public PersonSummaryDTO getPerson() {
+    return this.person;
+  }
+
+  public void setPerson(PersonSummaryDTO person) {
+    this.person = person;
+  }
+
+  public ZipcodeSumaryDTO getZipCode() {
+    return this.zipCode;
+  }
+
+  public void setZipCode(ZipcodeSumaryDTO zipCode) {
+    this.zipCode = zipCode;
+  }
+
+  public CitySummaryDTO getCity() {
+    return this.city;
+  }
+
+  public void setCity(CitySummaryDTO city) {
+    this.city = city;
+  }
+
+  public CountrySumaryDTO getCountry() {
+    return this.country;
+  }
+
+  public void setCountry(CountrySumaryDTO country) {
+    this.country = country;
+  }
+
 }

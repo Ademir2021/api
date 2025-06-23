@@ -59,10 +59,10 @@ public class AuthenticationController {
 
     @PutMapping("/register")
     public ResponseEntity<?> update(@RequestBody @Validated UpdateUserDTO updateUserDTO) {
-        if (this.repository.findByLogin(updateUserDTO.login) != null)
+        if (this.repository.findByLogin(updateUserDTO.getLogin()) != null)
             return ResponseEntity.badRequest().build();
-        String encryptedPassword = new BCryptPasswordEncoder().encode(updateUserDTO.password);
-        User newUser = new User(updateUserDTO.id, updateUserDTO.login, encryptedPassword, updateUserDTO.role);
+        String encryptedPassword = new BCryptPasswordEncoder().encode(updateUserDTO.getPassword());
+        User newUser = new User(updateUserDTO.getId(), updateUserDTO.getLogin(), encryptedPassword, updateUserDTO.getRole());
         this.repository.save(newUser);
         return ResponseEntity.ok().build();
     }

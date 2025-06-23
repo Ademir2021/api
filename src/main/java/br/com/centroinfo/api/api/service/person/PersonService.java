@@ -20,18 +20,18 @@ public class PersonService {
     public Person create(PersonDTO personDTO) {
         Person person = new Person();
         person.setCreatedAt(LocalDateTime.now());
-        person.setBranch(personDTO.branch);
-        person.setUser(personDTO.user);
-        person.setName(personDTO.name);
-        person.setDateOfBirth(personDTO.dateOfBirth);
+        person.setBranch(personDTO.getBranch());
+        person.setUser(personDTO.getUser());
+        person.setName(personDTO.getName());
+        person.setDateOfBirth(personDTO.getDateOfBirth());
         person.setAge(person.calcAge());
-        person.setGender(personDTO.gender);
-        person.setCpf(personDTO.cpf);
+        person.setGender(personDTO.getGender());
+        person.setCpf(personDTO.getCpf());
 
         List<PersonAddress> addressList = new ArrayList<>();
-        for (PersonAddressDTO personAddressDTO : personDTO.personAddress) {
+        for (PersonAddressDTO personAddressDTO : personDTO.getPersonAddress()) {
             PersonAddress personAddress = new PersonAddress();
-            personAddress.setIdAddress(personAddressDTO.idAddrees);
+            personAddress.setIdAddress(personAddressDTO.getIdAddrees());
             personAddress.setPerson(person);
             addressList.add(personAddress);
         }
@@ -45,21 +45,21 @@ public class PersonService {
 
     public Person update(PersonDTO personDTO) {
         Person person = new Person();
-        person.setId(personDTO.id);
-        person.setCreatedAt(personDTO.createdAt);
+        person.setId(personDTO.getId());
+        person.setCreatedAt(personDTO.getCreatedAt());
         person.setUpdatedAt(LocalDateTime.now());
-        person.setBranch(personDTO.branch);
-        person.setUser(personDTO.user);
-        person.setName(personDTO.name);
-        person.setDateOfBirth(personDTO.dateOfBirth);
+        person.setBranch(personDTO.getBranch());
+        person.setUser(personDTO.getUser());
+        person.setName(personDTO.getName());
+        person.setDateOfBirth(personDTO.getDateOfBirth());
         person.setAge(person.calcAge());
-        person.setGender(personDTO.gender);
-        person.setCpf(personDTO.cpf);
+        person.setGender(personDTO.getGender());
+        person.setCpf(personDTO.getCpf());
 
         List<PersonAddress> addressList = new ArrayList<>();
-        for (PersonAddressDTO personAddressDTO : personDTO.personAddress) {
+        for (PersonAddressDTO personAddressDTO : personDTO.getPersonAddress()) {
             PersonAddress personAddress = new PersonAddress();
-            personAddress.setIdAddress(personAddressDTO.idAddrees);
+            personAddress.setIdAddress(personAddressDTO.getIdAddrees());
             personAddress.setPerson(person);
             addressList.add(personAddress);
         }
@@ -67,9 +67,8 @@ public class PersonService {
         return personRepository.save(person);
     }
 
-    public List<Person> delete(Long id){
+    public List<Person> delete(Long id) {
         personRepository.deleteById(id);
         return list();
     }
-
 }

@@ -17,31 +17,31 @@ public class SaleService {
     @Autowired
     private SaleRepository saleRepository;
 
-    private Double totalSalse = 0.0;
+    private Double totalSale = 0.0;
 
     public Sale createSale(SaleDTO saleDTO) {
         Sale sale = new Sale();
         sale.setIssueDate(LocalDateTime.now());
-        sale.setPerson(saleDTO.person);
-        sale.setDiscount(saleDTO.discount);
-        sale.setBranch(saleDTO.branch);
-        sale.setUser(saleDTO.user);
+        sale.setPerson(saleDTO.getPerson());
+        sale.setDiscount(saleDTO.getDiscount());
+        sale.setBranch(saleDTO.getBranch());
+        sale.setUser(saleDTO.getUser());
 
         List<ItemSale> itemList = new ArrayList<>();
-        for (ItemSaleDTO itemDTO : saleDTO.itemsSale) {
+        for (ItemSaleDTO itemDTO : saleDTO.getItemsSale()) {
             ItemSale item = new ItemSale();
-            item.setItem(itemDTO.item);
-            item.setAmount(itemDTO.amount);
-            item.setPrice(itemDTO.price);
-            item.setTotalItem(itemDTO.price * itemDTO.amount);
-            totalSalse += item.getTotalItem();
+            item.setItem(itemDTO.getItem());
+            item.setAmount(itemDTO.getAmount());
+            item.setPrice(itemDTO.getPrice());
+            item.setTotalItem(itemDTO.getPrice() * itemDTO.getAmount());
+            totalSale += item.getTotalItem();
             item.setSale(sale);
             itemList.add(item);
         }
 
         sale.setItemsSale(itemList);
-        sale.setTotalSale(totalSalse);
-        sale.setTotalNote(totalSalse - sale.getDiscount());
+        sale.setTotalSale(totalSale);
+        sale.setTotalNote(totalSale - sale.getDiscount());
         return saleRepository.save(sale);
     }
 

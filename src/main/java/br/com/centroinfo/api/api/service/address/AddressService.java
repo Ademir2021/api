@@ -16,12 +16,12 @@ public class AddressService {
 
     public List<Address> create(AddressDTO addressDTO) {
         Address address = new Address();
-        address.setStreet(addressDTO.street);
-        address.setNumber(addressDTO.number);
-        address.setNeighbor(addressDTO.neighbor);
-        address.setComplement(addressDTO.complement);
-        address.setZipCode(addressDTO.zipCode);
-        address.setPerson(addressDTO.person);
+        address.setStreet(addressDTO.getStreet());
+        address.setNumber(addressDTO.getNumber());
+        address.setNeighbor(addressDTO.getNeighbor());
+        address.setComplement(addressDTO.getComplement());
+        address.setZipCode(addressDTO.getZipCode());
+        address.setPerson(addressDTO.getPerson());
         addressRepository.save(address);
         return list();
     }
@@ -36,14 +36,13 @@ public class AddressService {
 
     public Address update(AddressDTO addressDTO) {
         Address address = new Address();
-        address.setId(addressDTO.id);
-        address.setStreet(addressDTO.street);
-        address.setNumber(addressDTO.number);
-        address.setNeighbor(addressDTO.neighbor);
-        address.setComplement(addressDTO.complement);
-        address.setZipCode(addressDTO.zipCode);
-        address.setPerson(addressDTO.person);
-        //
+        address.setId(addressDTO.getId());
+        address.setStreet(addressDTO.getStreet());
+        address.setNumber(addressDTO.getNumber());
+        address.setNeighbor(addressDTO.getNeighbor());
+        address.setComplement(addressDTO.getComplement());
+        address.setZipCode(addressDTO.getZipCode());
+        address.setPerson(addressDTO.getPerson());
         return addressRepository.save(address);
     }
 

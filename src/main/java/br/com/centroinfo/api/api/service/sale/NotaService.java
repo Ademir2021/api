@@ -13,13 +13,13 @@ public class NotaService {
     public NotaDTO gerarNota(Sale sale) {
         List<ItemNotaDTO> itemDTOs = sale.getItemsSale().stream().map(item -> {
             Long id = item.getItem().getId();
-            String itemName = item.getItem().getName();
+            String item_ = item.getItem().getName();
             Integer amount = item.getAmount();
             Double price = item.getPrice();
             String barCode = item.getItem().getBarCode();
             String sector = item.getItem().getSector().getName();
             String brand = item.getItem().getBrand().getName();
-            return new ItemNotaDTO(id, itemName, amount, price, barCode, sector, brand);
+            return new ItemNotaDTO(id, item_, amount, price, barCode, sector, brand);
         }).collect(Collectors.toList());
 
         return new NotaDTO(
