@@ -11,6 +11,9 @@
     Banco: Postgres
     Dependências: Spring Web, Spring Data JPA, Database
 
+    # Recursos
+    - Impressão em pdf: Vamos usar OpenPDF (licença LGPL, gratuita e fácil de usar). Adicione ao seu pom.xml:
+
 # Estruturas do projeto 
 sales-api/
 ├── src/

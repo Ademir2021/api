@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.centroinfo.api.api.dto.saleDTO.SaleDTO;
 import br.com.centroinfo.api.api.entity.sale.Sale;
 import br.com.centroinfo.api.api.service.sale.SaleService;
@@ -32,5 +31,7 @@ public class SaleController {
     public List<Sale>listSale(){
         return saleService.listSale();
     }
+
+
 }
 

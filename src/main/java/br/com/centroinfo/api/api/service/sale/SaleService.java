@@ -30,7 +30,7 @@ public class SaleService {
         List<ItemSale> itemList = new ArrayList<>();
         for (ItemSaleDTO itemDTO : saleDTO.itemsSale) {
             ItemSale item = new ItemSale();
-            item.setIdProduct(itemDTO.idProduct);
+            item.setItem(itemDTO.item);
             item.setAmount(itemDTO.amount);
             item.setPrice(itemDTO.price);
             item.setTotalItem(itemDTO.price * itemDTO.amount);
@@ -46,6 +46,7 @@ public class SaleService {
     }
 
     public List<Sale> listSale() {
-        return saleRepository.findAll();
+      return  saleRepository.findAll();
     }
+
 }
