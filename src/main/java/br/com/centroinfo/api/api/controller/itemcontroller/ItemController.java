@@ -2,9 +2,11 @@ package br.com.centroinfo.api.api.controller.itemcontroller;
 
 import br.com.centroinfo.api.api.dto.itemDTO.ItemDTO;
 import br.com.centroinfo.api.api.entity.item.Item;
+// import br.com.centroinfo.api.api.provider.ResourceNotFoundException;
 import br.com.centroinfo.api.api.service.item.ItemService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +24,14 @@ public class ItemController {
     ItemService itemService;
 
     @PostMapping("/items")
-    public List<Item> create(@RequestBody ItemDTO itemDTO) {
-        return itemService.create(itemDTO);
+    public ResponseEntity<?> create(@RequestBody ItemDTO itemDTO) {
+        try {
+            return (ResponseEntity<?>) itemService.create(itemDTO);
+            
+        } catch (Exception e) {
+            // throw new ResourceNotFoundException("Item não gravado");
+            return ResponseEntity.ok().body("Error: " + e);
+        }
     }
 
     @GetMapping("/items")
