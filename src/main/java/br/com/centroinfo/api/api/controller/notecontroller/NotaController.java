@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.centroinfo.api.api.dto.saleDTO.NotaDTO;
+import br.com.centroinfo.api.api.provider.ResourceNotFoundException;
 import br.com.centroinfo.api.api.repository.sale.SaleRepository;
 import br.com.centroinfo.api.api.service.sale.NotaService;
 
@@ -22,10 +23,11 @@ public class NotaController {
     }
 
     @GetMapping("/nota/{saleId}")
-    public ResponseEntity<NotaDTO> gerarNota(@PathVariable Long saleId) {
+    public ResponseEntity<NotaDTO>  gerarNota(@PathVariable Long saleId) {
         return saleRepository.findById(saleId)
-                .map(notaService::gerarNota)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        .map(notaService::gerarNota)
+        .map(ResponseEntity::ok)
+        // .orElse(ResponseEntity.notFound().build());
+        .orElseThrow(() -> new ResourceNotFoundException("Nota com ID " + saleId + " não encontrado"));
     }
 }

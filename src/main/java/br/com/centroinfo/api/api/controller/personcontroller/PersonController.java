@@ -5,6 +5,7 @@ import br.com.centroinfo.api.api.entity.person.Person;
 import br.com.centroinfo.api.api.service.person.PersonService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +23,13 @@ public class PersonController {
     PersonService personService;
 
     @PostMapping("/persons")
-    public List<Person> create(@RequestBody PersonDTO personDTO) {
-        personService.create(personDTO);
-        return list();
+    public ResponseEntity<String> create(@RequestBody PersonDTO personDTO) {
+        try {
+            Person person = personService.create(personDTO);
+            return ResponseEntity.ok("Pessoa criada com sucesso nº " + person.getId());
+        } catch (Exception e) {
+            return ResponseEntity.ok("Erro ao criar Pessoa " + e);
+        }
     }
 
     @GetMapping("/persons")
@@ -33,15 +38,18 @@ public class PersonController {
     }
 
     @PutMapping("/persons")
-    public List<Person> update(@RequestBody PersonDTO personDTO) {
-        personService.update(personDTO);
-        return list();
+    public ResponseEntity<String> update(@RequestBody PersonDTO personDTO) {
+        try {
+            Person person = personService.update(personDTO);
+            return ResponseEntity.ok().body("Pessoa Atualizada com sucesso " + person.getId());
+        } catch (Exception e) {
+            return ResponseEntity.ok().body("Erro ao atualizar Pessoa " + e);
+        }
     }
 
-  
-   @DeleteMapping("/persons/{id}")
-   public List<Person> delete(@PathVariable("id") Long id){
-    return personService.delete(id);
-   }
+    @DeleteMapping("/persons/{id}")
+    public List<Person> delete(@PathVariable("id") Long id) {
+        return personService.delete(id);
+    }
 
 }
