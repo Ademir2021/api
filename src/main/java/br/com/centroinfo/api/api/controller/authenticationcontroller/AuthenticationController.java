@@ -5,6 +5,7 @@ import br.com.centroinfo.api.api.dto.userDTO.LoginResponseDTO;
 import br.com.centroinfo.api.api.dto.userDTO.RegisterDTO;
 import br.com.centroinfo.api.api.dto.userDTO.UpdateUserDTO;
 import br.com.centroinfo.api.api.entity.user.User;
+import br.com.centroinfo.api.api.provider.ResourceNotFoundException;
 import br.com.centroinfo.api.api.provider.security.TokenService;
 import br.com.centroinfo.api.api.repository.UserRepository;
 import java.util.List;
@@ -45,7 +46,8 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody @Validated RegisterDTO authenticationDTO) {
         if (this.repository.findByLogin(authenticationDTO.login()) != null)
-            return ResponseEntity.badRequest().build();
+        throw new ResourceNotFoundException("Usuário já existe");
+            // return ResponseEntity.badRequest().build();
         String encryptedPassword = new BCryptPasswordEncoder().encode(authenticationDTO.password());
         User newUser = new User(authenticationDTO.login(), encryptedPassword, authenticationDTO.role());
         this.repository.save(newUser);
