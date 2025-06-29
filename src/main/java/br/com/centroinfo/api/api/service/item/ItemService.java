@@ -32,6 +32,16 @@ public class ItemService {
         return itemRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
+
+    // Método para buscar itens por nome
+    public List<Item> searchItemsByName(String name) {
+        if (name != null && !name.isEmpty()) {
+            return itemRepository.findByNameContainingIgnoreCase(name);
+        }
+        return itemRepository.findAll();
+    }
+
+
     public List<Item> update(ItemDTO itemDTO) {
         Item item = new Item();
         item.setId(itemDTO.getId());
@@ -52,4 +62,7 @@ public class ItemService {
         itemRepository.deleteById(id);
         return list();
     }
+
+    
+    
 }
