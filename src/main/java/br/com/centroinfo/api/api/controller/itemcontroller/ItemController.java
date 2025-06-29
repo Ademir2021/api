@@ -37,13 +37,13 @@ public class ItemController {
         }
     }
 
-    // @GetMapping("/items")
-    // public List<Item> list() {
-    //     return itemService.list();
-    // }
+    @GetMapping("/items")
+    public List<Item> list() {
+        return itemService.list();
+    }
 
      // Endpoint para buscar itens por nome
-    @GetMapping("/items")
+    @GetMapping("/search_name")
     public List<Item> searchItemsByName(@RequestParam(required = false) String name) {
         return itemService.searchItemsByName(name);
     }

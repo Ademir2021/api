@@ -29,18 +29,16 @@ public class ItemService {
     }
 
     public List<Item> list() {
-        return itemRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        return itemRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
-
 
     // Método para buscar itens por nome
     public List<Item> searchItemsByName(String name) {
         if (name != null && !name.isEmpty()) {
             return itemRepository.findByNameContainingIgnoreCase(name);
         }
-        return itemRepository.findAll();
+        return list();
     }
-
 
     public List<Item> update(ItemDTO itemDTO) {
         Item item = new Item();
