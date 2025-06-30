@@ -34,10 +34,12 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/items/brands").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/items/sectors").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/items/items").permitAll()
                         .requestMatchers(HttpMethod.POST, "/items/items").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/store/sales").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/persons/persons").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/notas/nota/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/address/address").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
