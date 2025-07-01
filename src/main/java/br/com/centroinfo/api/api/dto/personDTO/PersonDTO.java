@@ -19,6 +19,7 @@ public class PersonDTO {
     private String cpf;
     private List<PersonAddressDTO> personAddress;
     
+    
     public Long getId() {
         return this.id;
     }

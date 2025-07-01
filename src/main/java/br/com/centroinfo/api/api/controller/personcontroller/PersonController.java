@@ -1,6 +1,7 @@
 package br.com.centroinfo.api.api.controller.personcontroller;
 
 import br.com.centroinfo.api.api.dto.personDTO.PersonDTO;
+import br.com.centroinfo.api.api.dto.personDTO.PersonDTOSumary;
 import br.com.centroinfo.api.api.entity.person.Person;
 import br.com.centroinfo.api.api.service.person.PersonService;
 import java.util.List;
@@ -33,8 +34,8 @@ public class PersonController {
     }
 
     @GetMapping("/persons")
-    public List<Person> list() {
-        return personService.list();
+    public List<PersonDTOSumary> list() {
+        return personService.findSummary();
     }
 
     @PutMapping("/persons")

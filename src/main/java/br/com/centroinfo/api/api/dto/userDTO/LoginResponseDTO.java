@@ -10,19 +10,29 @@ import java.util.List;
 
 public class LoginResponseDTO {
 
+    private Long id;
     private String token;
     private String username;
     private List<String> roles;
 
-    public LoginResponseDTO(String token, String username, List<String> roles) {
+    public LoginResponseDTO(Long id, String token, String username, List<String> roles) {
+        this.id = id;
         this.token = token;
         this.username = username;
         this.roles = roles;
     }
 
-    // Getters and Setters
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getToken() {
         return token;
+
     }
 
     public void setToken(String token) {
@@ -45,4 +55,3 @@ public class LoginResponseDTO {
         this.roles = roles;
     }
 }
-

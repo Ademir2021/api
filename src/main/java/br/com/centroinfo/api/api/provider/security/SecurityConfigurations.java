@@ -40,6 +40,7 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/persons/persons").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/notas/nota/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/address/address").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/persons/persons").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

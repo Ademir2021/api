@@ -2,6 +2,7 @@ package br.com.centroinfo.api.api.service.person;
 
 import br.com.centroinfo.api.api.dto.personDTO.PersonAddressDTO;
 import br.com.centroinfo.api.api.dto.personDTO.PersonDTO;
+import br.com.centroinfo.api.api.dto.personDTO.PersonDTOSumary;
 import br.com.centroinfo.api.api.entity.person.Person;
 import br.com.centroinfo.api.api.entity.person.PersonAddress;
 import br.com.centroinfo.api.api.repository.person.PersonRepository;
@@ -41,6 +42,10 @@ public class PersonService {
 
     public List<Person> list() {
         return personRepository.findAll();
+    }
+
+    public List<PersonDTOSumary> findSummary(){
+        return personRepository.findSummary();
     }
 
     public Person update(PersonDTO personDTO) {

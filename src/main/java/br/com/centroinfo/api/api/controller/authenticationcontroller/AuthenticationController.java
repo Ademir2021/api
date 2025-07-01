@@ -59,7 +59,7 @@ public class AuthenticationController {
         List<String> roles = user.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(new LoginResponseDTO(token, user.getUsername(), roles));
+        return ResponseEntity.ok(new LoginResponseDTO(user.getId(), token, user.getUsername(), roles));
     }
 
     @PostMapping("/register")
