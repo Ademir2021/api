@@ -2,6 +2,8 @@ package br.com.centroinfo.api.api.dto.personDTO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import br.com.centroinfo.api.api.entity.person.Gender;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +15,7 @@ public class PersonDTOSumary {
     private String name;
     private int age;
     private LocalDate dateOfBirth;
+    private Gender gender;
     private String cpf;
     private BranchSumaryDTO branch;
     private UserSumaryDTO user;
@@ -29,7 +32,8 @@ public class PersonDTOSumary {
         String bName,
         Long uId,
         String uLogin,
-        Long perAddrId
+        Long perAddrId,
+        Gender gender
         ) {
         this.id = id;
         this.createdAt = createdAt;
@@ -40,6 +44,7 @@ public class PersonDTOSumary {
         this.branch = new BranchSumaryDTO(bId, bName);
         this.user = new UserSumaryDTO(uId, uLogin);
         this.personAddress = new PersonAddressDTO(perAddrId);
+        this.gender = gender;
     }
 }
 

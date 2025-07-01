@@ -15,7 +15,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
         p.id, p.createdAt, p.name, p.age, dateOfBirth, p.cpf,
         b.id, b.name,
         u.id, u.login,
-        pa.id
+        pa.id,
+        p.gender
         )
         FROM Person p
         JOIN p.branch b

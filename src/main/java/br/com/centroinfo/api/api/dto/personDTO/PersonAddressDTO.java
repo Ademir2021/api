@@ -7,6 +7,9 @@ public class PersonAddressDTO {
     public PersonAddressDTO(Long idAddrees) {
         this.idAddrees = idAddrees;
     }
+        public PersonAddressDTO() {
+        // Construtor padrão necessário para o Jackson
+    }
 
     public Long getIdAddrees() {
         return this.idAddrees;
