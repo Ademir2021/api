@@ -29,7 +29,6 @@ public class SecurityConfigurations {
 
                         // Pemite requisições do tipo tems/search_name?name=mouse
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/items/brands").hasRole("ADMIN")
@@ -41,6 +40,7 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.GET, "/notas/nota/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/address/address").permitAll()
                         .requestMatchers(HttpMethod.GET, "/persons/persons").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/zipcodes/zipcode").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
