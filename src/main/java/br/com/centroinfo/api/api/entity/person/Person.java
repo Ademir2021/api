@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.centroinfo.api.api.entity.address.Address;
 import br.com.centroinfo.api.api.entity.branch.Branch;
 import br.com.centroinfo.api.api.entity.user.User;
 import lombok.Getter;
@@ -24,41 +25,28 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Person {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
   @Column(name = "created_at")
   private LocalDateTime createdAt;
-
   @Column(name = "updated_at")
   private LocalDateTime updatedAt;
-
   @ManyToOne
   @JoinColumn(name = "branch_id")
   private Branch branch;
-
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
-  
   private String name;
-
   private int age;
-
   @Column(name = "date_birth")
   private LocalDate dateOfBirth;
-
   private Gender gender;
-
   private String cpf;
-
-  @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-  private List<PersonAddress> personAddress;
-
+  @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Address> addresses;
   public int calcAge() {
     return LocalDate.now().getYear() - dateOfBirth.getYear();
   }
-
 }

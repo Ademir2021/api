@@ -1,10 +1,9 @@
 package br.com.centroinfo.api.api.service.person;
 
-import br.com.centroinfo.api.api.dto.personDTO.PersonAddressDTO;
+import br.com.centroinfo.api.api.dto.addressDTO.AddressDTO;
 import br.com.centroinfo.api.api.dto.personDTO.PersonDTO;
-import br.com.centroinfo.api.api.dto.personDTO.PersonDTOSumary;
+import br.com.centroinfo.api.api.entity.address.Address;
 import br.com.centroinfo.api.api.entity.person.Person;
-import br.com.centroinfo.api.api.entity.person.PersonAddress;
 import br.com.centroinfo.api.api.repository.person.PersonRepository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,58 +17,68 @@ public class PersonService {
     @Autowired
     PersonRepository personRepository;
 
-    public Person create(PersonDTO personDTO) {
-        Person person = new Person();
-        person.setCreatedAt(LocalDateTime.now());
-        person.setBranch(personDTO.getBranch());
-        person.setUser(personDTO.getUser());
-        person.setName(personDTO.getName());
-        person.setDateOfBirth(personDTO.getDateOfBirth());
-        person.setAge(person.calcAge());
-        person.setGender(personDTO.getGender());
-        person.setCpf(personDTO.getCpf());
-
-        List<PersonAddress> addressList = new ArrayList<>();
-        for (PersonAddressDTO personAddressDTO : personDTO.getPersonAddress()) {
-            PersonAddress personAddress = new PersonAddress();
-            personAddress.setIdAddress(personAddressDTO.getIdAddrees());
-            personAddress.setPerson(person);
-            addressList.add(personAddress);
+    public Person savePerson(PersonDTO personDTO) {
+        Person pers = new Person();
+        pers.setCreatedAt(LocalDateTime.now());
+        pers.setBranch(personDTO.getBranch());
+        pers.setUser(personDTO.getUser());
+        pers.setName(personDTO.getName());
+        pers.setDateOfBirth(personDTO.getDateOfBirth());
+        pers.setAge(personDTO.calcAge());
+        pers.setGender(personDTO.getGender());
+        pers.setCpf(personDTO.getCpf());
+        /** Inclui os Address */
+        List<Address> addrList = new ArrayList<>();
+        for (AddressDTO addressDTO : personDTO.getAddresses()) {
+            Address address = new Address();
+            address.setId(addressDTO.getId());
+            address.setStreet(addressDTO.getStreet());
+            address.setNumber(addressDTO.getNumber());
+            address.setNeighbor(addressDTO.getNeighbor());
+            address.setComplement(addressDTO.getComplement());
+            address.setZipCode(addressDTO.getZipCode());
+            address.setPerson(addressDTO.getPerson());
+            addrList.add(address);
         }
-        person.setPersonAddress(addressList);
-        return personRepository.save(person);
+        pers.setAddresses(addrList);
+        return personRepository.save(pers);
     }
 
     public List<Person> list() {
         return personRepository.findAll();
     }
 
-    public List<PersonDTOSumary> findSummary(){
-        return personRepository.findSummary();
+    public List<Person> findSummary() {
+        return personRepository.findAll();
     }
 
     public Person update(PersonDTO personDTO) {
-        Person person = new Person();
-        person.setId(personDTO.getId());
-        person.setCreatedAt(personDTO.getCreatedAt());
-        person.setUpdatedAt(LocalDateTime.now());
-        person.setBranch(personDTO.getBranch());
-        person.setUser(personDTO.getUser());
-        person.setName(personDTO.getName());
-        person.setDateOfBirth(personDTO.getDateOfBirth());
-        person.setAge(person.calcAge());
-        person.setGender(personDTO.getGender());
-        person.setCpf(personDTO.getCpf());
-
-        List<PersonAddress> addressList = new ArrayList<>();
-        for (PersonAddressDTO personAddressDTO : personDTO.getPersonAddress()) {
-            PersonAddress personAddress = new PersonAddress();
-            personAddress.setIdAddress(personAddressDTO.getIdAddrees());
-            personAddress.setPerson(person);
-            addressList.add(personAddress);
+        Person pers = new Person();
+        pers.setId(personDTO.getId());
+        pers.setCreatedAt(personDTO.getCreatedAt());
+        pers.setUpdatedAt(LocalDateTime.now());
+        pers.setBranch(personDTO.getBranch());
+        pers.setUser(personDTO.getUser());
+        pers.setName(personDTO.getName());
+        pers.setDateOfBirth(personDTO.getDateOfBirth());
+        pers.setAge(personDTO.calcAge());
+        pers.setGender(personDTO.getGender());
+        pers.setCpf(personDTO.getCpf());
+        /** update os Address */
+        List<Address> addrList = new ArrayList<>();
+        for (AddressDTO addressDTO : personDTO.getAddresses()) {
+            Address address = new Address();
+            address.setId(addressDTO.getId());
+            address.setStreet(addressDTO.getStreet());
+            address.setNumber(addressDTO.getNumber());
+            address.setNeighbor(addressDTO.getNeighbor());
+            address.setComplement(addressDTO.getComplement());
+            address.setZipCode(addressDTO.getZipCode());
+            address.setPerson(addressDTO.getPerson());
+            addrList.add(address);
         }
-        person.setPersonAddress(addressList);
-        return personRepository.save(person);
+        pers.setAddresses(addrList);
+        return personRepository.save(pers);
     }
 
     public List<Person> delete(Long id) {

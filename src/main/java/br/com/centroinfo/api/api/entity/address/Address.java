@@ -12,11 +12,10 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Table(name="address")
 @Entity
+@Table(name="address")
 @Getter
 @Setter
-
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

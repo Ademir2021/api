@@ -1,7 +1,6 @@
 package br.com.centroinfo.api.api.controller.personcontroller;
 
 import br.com.centroinfo.api.api.dto.personDTO.PersonDTO;
-import br.com.centroinfo.api.api.dto.personDTO.PersonDTOSumary;
 import br.com.centroinfo.api.api.entity.person.Person;
 import br.com.centroinfo.api.api.service.person.PersonService;
 import java.util.List;
@@ -24,17 +23,12 @@ public class PersonController {
     PersonService personService;
 
     @PostMapping("/persons")
-    public ResponseEntity<String> create(@RequestBody PersonDTO personDTO) {
-        try {
-            Person person = personService.create(personDTO);
-            return ResponseEntity.ok("Pessoa criada com sucesso nº " + person.getId());
-        } catch (Exception e) {
-            return ResponseEntity.ok("Erro ao criar Pessoa " + e);
-        }
+    public Person create(@RequestBody PersonDTO personDTO) {
+            return personService.savePerson(personDTO);
     }
 
     @GetMapping("/persons")
-    public List<PersonDTOSumary> list() {
+    public List<Person> list() {
         return personService.findSummary();
     }
 

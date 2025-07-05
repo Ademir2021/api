@@ -1,7 +1,6 @@
 package br.com.centroinfo.api.api.service.address;
 
 import br.com.centroinfo.api.api.dto.addressDTO.AddressDTO;
-import br.com.centroinfo.api.api.dto.addressDTO.AddressSummaryDTO;
 import br.com.centroinfo.api.api.entity.address.Address;
 import br.com.centroinfo.api.api.repository.address.AddressRepository;
 import java.util.List;
@@ -30,8 +29,8 @@ public class AddressService {
         return addressRepository.findAll();
     }
 
-    public List<AddressSummaryDTO> findSummary() {
-        return addressRepository.findSummary();
+    public List<Address> findSummary() {
+        return addressRepository.findAll();
     }
 
     public Address update(AddressDTO addressDTO) {

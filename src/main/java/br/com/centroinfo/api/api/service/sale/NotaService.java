@@ -28,6 +28,7 @@ public class NotaService {
                 sale.getBranch().getName(),
                 sale.getUser().getLogin(),
                 sale.getPerson().getName(),
+                sale.getPerson().getAddresses().get(0).getStreet(),
                 itemDTOs,
                 sale.getTotalSale(),
                 sale.getDiscount(),

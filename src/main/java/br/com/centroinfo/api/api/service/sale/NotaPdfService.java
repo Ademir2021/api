@@ -1,5 +1,6 @@
 package br.com.centroinfo.api.api.service.sale;
 
+import br.com.centroinfo.api.api.entity.address.Address;
 // import java.io.IOException;
 // import org.springframework.core.io.ClassPathResource;
 import br.com.centroinfo.api.api.entity.sale.ItemSale;
@@ -16,6 +17,7 @@ import java.io.ByteArrayOutputStream;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class NotaPdfService {
@@ -39,15 +41,26 @@ public class NotaPdfService {
             Paragraph title = new Paragraph("Nota de Venda", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18));
             title.setAlignment(Element.ALIGN_CENTER);
             document.add(title);
-
             document.add(new Paragraph(" "));
             document.add(new Paragraph("Número da Venda: " + sale.getId()));
             document.add(new Paragraph(
                     "Data de Emissão: " + sale.getIssueDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))));
             document.add(new Paragraph("Filial: " + sale.getBranch().getName()));
+            document.add(new Paragraph("Telefone: " + sale.getBranch().getPhoneNumber()));
             document.add(new Paragraph("Vendedor: " + sale.getUser().getUsername()));
+            document.add(new Paragraph("========== Dados do Cliente =========="));
             document.add(new Paragraph("Cliente: " + sale.getPerson().getName()));
-            document.add(new Paragraph(" "));
+            document.add(new Paragraph("CPF: " + sale.getPerson().getCpf()));
+            document.add(new Paragraph("Endereço(s) do Cliente: "));
+            List<Address> addresses = sale.getPerson().getAddresses();
+            for (Address address : addresses) {
+                document.add(new Paragraph("Endereço: " + address.getStreet()));
+                document.add(new Paragraph("Num: " + address.getNumber()));
+                document.add(new Paragraph("Bairro: " + address.getNeighbor()));
+                document.add(new Paragraph("Cidade: " + address.getZipCode().getCity().getName()));
+                document.add(new Paragraph("CEP: " + address.getZipCode().getCode()));
+                document.add(new Paragraph(" "));
+            }
 
             // Tabela de Itens
             PdfPTable table = new PdfPTable(4);
@@ -92,7 +105,8 @@ public class NotaPdfService {
 
             // Rodapé
             Paragraph rodape = new Paragraph(
-                    "Empresa: " + sale.getBranch().getName() + " - CNPJ: 00.000.000/0001-00 | www.empresa.com | (11) 99999-9999",
+                    "Empresa: " + sale.getBranch().getName()
+                            + " - CNPJ: 00.000.000/0001-00 | www.empresa.com | (11) 99999-9999",
                     FontFactory.getFont(FontFactory.HELVETICA, 9));
             rodape.setAlignment(Element.ALIGN_CENTER);
             document.add(rodape);

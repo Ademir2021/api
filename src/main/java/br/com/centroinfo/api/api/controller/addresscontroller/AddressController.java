@@ -1,7 +1,6 @@
 package br.com.centroinfo.api.api.controller.addresscontroller;
 
 import br.com.centroinfo.api.api.dto.addressDTO.AddressDTO;
-import br.com.centroinfo.api.api.dto.addressDTO.AddressSummaryDTO;
 import br.com.centroinfo.api.api.entity.address.Address;
 import br.com.centroinfo.api.api.service.address.AddressService;
 import java.util.List;
@@ -29,7 +28,7 @@ public class AddressController {
     }
 
     @GetMapping("/address")
-    public List<AddressSummaryDTO> list() {
+    public List<Address> list() {
         return addressService.findSummary();
     }
 
