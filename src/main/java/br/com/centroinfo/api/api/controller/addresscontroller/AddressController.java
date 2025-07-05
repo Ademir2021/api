@@ -1,10 +1,12 @@
 package br.com.centroinfo.api.api.controller.addresscontroller;
 
 import br.com.centroinfo.api.api.dto.addressDTO.AddressDTO;
+import br.com.centroinfo.api.api.dto.addressDTO.AddressResponseDTO;
 import br.com.centroinfo.api.api.entity.address.Address;
 import br.com.centroinfo.api.api.service.address.AddressService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,26 +24,27 @@ public class AddressController {
     AddressService addressService;
 
     @PostMapping("/address")
-    public List<Address> create(@RequestBody AddressDTO addressDTO) {
+    public List<AddressResponseDTO> create(@RequestBody AddressDTO addressDTO) {
         addressService.create(addressDTO);
-        return addressService.list();
+        return addressService.findAllAddresses();
     }
 
     @GetMapping("/address")
-    public List<Address> list() {
-        return addressService.findSummary();
+    public ResponseEntity<List<AddressResponseDTO>> getAddressesByPersonId() {
+        List<AddressResponseDTO> addresses = addressService.findAllAddresses();
+        if (addresses.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(addresses);
     }
-
 
     @PutMapping("/address")
     public Address update(@RequestBody AddressDTO addressDTO) {
         return addressService.update(addressDTO);
-        
     }
 
     @DeleteMapping("/address/{id}")
     public void delete(@PathVariable("id") Long id) {
         addressService.delete(id);
     }
-
 }

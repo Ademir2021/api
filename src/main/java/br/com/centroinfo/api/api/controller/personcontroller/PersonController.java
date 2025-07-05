@@ -1,6 +1,7 @@
 package br.com.centroinfo.api.api.controller.personcontroller;
 
 import br.com.centroinfo.api.api.dto.personDTO.PersonDTO;
+import br.com.centroinfo.api.api.dto.personDTO.PersonResponseDTO;
 import br.com.centroinfo.api.api.entity.person.Person;
 import br.com.centroinfo.api.api.service.person.PersonService;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -30,6 +32,10 @@ public class PersonController {
     @GetMapping("/persons")
     public List<Person> list() {
         return personService.findSummary();
+    }
+    @GetMapping("/search")
+    public List<PersonResponseDTO> searchPersons(@RequestParam String name) {
+        return personService.getPersonsByName(name);
     }
 
     @PutMapping("/persons")

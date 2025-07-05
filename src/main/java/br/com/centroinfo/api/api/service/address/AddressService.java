@@ -1,6 +1,7 @@
 package br.com.centroinfo.api.api.service.address;
 
 import br.com.centroinfo.api.api.dto.addressDTO.AddressDTO;
+import br.com.centroinfo.api.api.dto.addressDTO.AddressResponseDTO;
 import br.com.centroinfo.api.api.entity.address.Address;
 import br.com.centroinfo.api.api.repository.address.AddressRepository;
 import java.util.List;
@@ -13,7 +14,7 @@ public class AddressService {
     @Autowired
     AddressRepository addressRepository;
 
-    public List<Address> create(AddressDTO addressDTO) {
+    public List<AddressResponseDTO> create(AddressDTO addressDTO) {
         Address address = new Address();
         address.setStreet(addressDTO.getStreet());
         address.setNumber(addressDTO.getNumber());
@@ -22,15 +23,11 @@ public class AddressService {
         address.setZipCode(addressDTO.getZipCode());
         address.setPerson(addressDTO.getPerson());
         addressRepository.save(address);
-        return list();
+        return findAllAddresses();
     }
 
-    public List<Address> list() {
-        return addressRepository.findAll();
-    }
-
-    public List<Address> findSummary() {
-        return addressRepository.findAll();
+    public List<AddressResponseDTO> findAllAddresses(){
+        return addressRepository.findAllAddresses();
     }
 
     public Address update(AddressDTO addressDTO) {
