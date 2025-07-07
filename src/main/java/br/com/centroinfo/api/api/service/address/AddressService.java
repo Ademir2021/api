@@ -14,7 +14,7 @@ public class AddressService {
     @Autowired
     AddressRepository addressRepository;
 
-    public List<AddressResponseDTO> create(AddressDTO addressDTO) {
+    public Address create(AddressDTO addressDTO) {
         Address address = new Address();
         address.setStreet(addressDTO.getStreet());
         address.setNumber(addressDTO.getNumber());
@@ -22,8 +22,8 @@ public class AddressService {
         address.setComplement(addressDTO.getComplement());
         address.setZipCode(addressDTO.getZipCode());
         address.setPerson(addressDTO.getPerson());
-        addressRepository.save(address);
-        return findAllAddresses();
+        return addressRepository.save(address);
+        
     }
 
     public List<AddressResponseDTO> findAllAddresses(){

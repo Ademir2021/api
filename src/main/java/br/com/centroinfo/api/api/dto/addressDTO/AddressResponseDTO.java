@@ -37,7 +37,7 @@ public class AddressResponseDTO {
     this.number = number;
     this.neighbor = neighbor;
     this.complement = complement;
-    this.person = new PersonResponseDTO(zId, pName);
+    this.person = new PersonResponseDTO(pId, pName);
     this.zipCode = new ZipcodeResponseDTO(zId, zCode);
     this.city = new CityResponseDTO(cId, cName, cState, cIbge);
     this.country = new CountryResponseDTO(coId, coName, coCode);

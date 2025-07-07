@@ -24,9 +24,8 @@ public class AddressController {
     AddressService addressService;
 
     @PostMapping("/address")
-    public List<AddressResponseDTO> create(@RequestBody AddressDTO addressDTO) {
-        addressService.create(addressDTO);
-        return addressService.findAllAddresses();
+    public Address create(@RequestBody AddressDTO addressDTO) {
+       return addressService.create(addressDTO);
     }
 
     @GetMapping("/address")
