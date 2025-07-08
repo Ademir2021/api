@@ -25,7 +25,7 @@ public class AddressController {
 
     @PostMapping("/address")
     public Address create(@RequestBody AddressDTO addressDTO) {
-       return addressService.create(addressDTO);
+        return addressService.create(addressDTO);
     }
 
     @GetMapping("/address")
@@ -38,8 +38,9 @@ public class AddressController {
     }
 
     @PutMapping("/address")
-    public Address update(@RequestBody AddressDTO addressDTO) {
-        return addressService.update(addressDTO);
+    public ResponseEntity<String> update(@RequestBody AddressDTO addressDTO) {
+        Address address = addressService.update(addressDTO);
+        return ResponseEntity.ok().body("Pessoa Atualizada com sucesso " + "(ID:" + address.getId() + ")");
     }
 
     @DeleteMapping("/address/{id}")
