@@ -44,7 +44,7 @@ public class Person {
   private LocalDate dateOfBirth;
   private Gender gender;
   private String cpf;
-  @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = false)
   private List<Address> addresses;
   public int calcAge() {
     return LocalDate.now().getYear() - dateOfBirth.getYear();
