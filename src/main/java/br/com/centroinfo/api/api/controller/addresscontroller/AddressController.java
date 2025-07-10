@@ -40,7 +40,7 @@ public class AddressController {
     @PutMapping("/address")
     public ResponseEntity<String> update(@RequestBody AddressDTO addressDTO) {
         Address address = addressService.update(addressDTO);
-        return ResponseEntity.ok().body("Pessoa Atualizada com sucesso " + "(ID:" + address.getId() + ")");
+        return ResponseEntity.ok().body("Endereço atualizado com sucesso " + "(ID:" + address.getId() + ")");
     }
 
     @DeleteMapping("/address/{id}")

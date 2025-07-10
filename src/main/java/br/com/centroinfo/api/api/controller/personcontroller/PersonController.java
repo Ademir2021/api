@@ -42,7 +42,7 @@ public class PersonController {
     public ResponseEntity<String> update(@RequestBody PersonDTO personDTO) {
         try {
             Person person = personService.update(personDTO);
-            return ResponseEntity.ok().body("Pessoa Atualizada com sucesso " + person.getId());
+            return ResponseEntity.ok().body("Pessoa atualizada com sucesso " + person.getId());
         } catch (Exception e) {
             return ResponseEntity.ok().body("Erro ao atualizar Pessoa " + e);
         }
