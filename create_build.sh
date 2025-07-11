@@ -1,10 +1,8 @@
 #!/bin/bash
-echo "Iniciando Build do projeto"
+echo "init build"
 mvn clean package
-echo 'Removendo build OLD'
-rm ../../projects/app-sale-build/api/*.jar
-echo 'OLD build removida'
-cp -rf target/api-0.0.1-SNAPSHOT.jar ../../projects/app-sale-build/api/api-0.0.1-SNAPSHOT.jar
-echo 'NEW build criada'
-echo 'sucess'
-echo 'Fim ...'
+echo 'remove build old'
+rm ../../builds/order/api/target/*.jar
+echo 'create build new'
+cp -rf target/api-0.0.1-SNAPSHOT.jar ../../builds/order/api/target/api-0.0.1-SNAPSHOT.jar
+echo 'end'
